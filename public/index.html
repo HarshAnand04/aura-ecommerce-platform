@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aura | Premium Electronics</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="glass-nav">
+    <div class="nav-content">
+      <div class="logo">Premium Luxury</div>
+      <div class="nav-links">
+        <a href="#" data-section="store">Store</a>
+        <a href="#" data-section="cart" id="cart-link">Cart (0)</a>
+        <a href="#" data-section="orders" id="orders-link" hidden>Orders</a>
+        <a href="#" data-section="admin" id="admin-link" hidden>Admin Panel</a>
+        <button type="button" id="auth-link">Login</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Store Section -->
+  <section id="store-section" class="container active-section">
+    <header class="hero">
+      <h1>Elevate Your Tech.</h1>
+      <p>Premium aesthetics. Uncompromised performance.</p>
+    </header>
+
+    <div class="catalog-tools" role="search">
+      <label class="search-control" for="product-search">
+        <span>Search products</span>
+        <input id="product-search" type="search" placeholder="Headphones, watches, keyboards..." autocomplete="off">
+      </label>
+      <label class="category-control" for="category-filter">
+        <span>Category</span>
+        <select id="category-filter">
+          <option value="All">All categories</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="product-grid" id="product-grid">
+      <!-- Products injected here -->
+      <div class="loader">Loading products...</div>
+    </div>
+    <nav class="pagination-controls" id="products-pagination" aria-label="Product pages" hidden>
+      <button type="button" class="pagination-button" id="products-previous">Previous</button>
+      <span id="products-page">Page 1 of 1</span>
+      <button type="button" class="pagination-button" id="products-next">Next</button>
+    </nav>
+  </section>
+
+  <!-- Cart Section -->
+  <section id="cart-section" class="container hidden-section">
+    <h2>Your Cart</h2>
+    <div class="cart-container">
+      <div id="cart-items" class="cart-items">
+        <!-- Cart items injected here -->
+      </div>
+      <div class="cart-summary glass-panel">
+        <h3>Order Summary</h3>
+        <div class="summary-row">
+          <span>Total:</span>
+          <span id="cart-total" class="highlight-text">$0.00</span>
+        </div>
+        <button class="btn primary-btn" type="button" id="checkout-btn">Checkout Securely</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Orders Section -->
+  <section id="orders-section" class="container hidden-section">
+    <h2>Your Orders</h2>
+    <div id="order-list" class="order-list" aria-live="polite"></div>
+  </section>
+
+  <section id="admin-section" class="container hidden-section">
+    <div class="admin-heading">
+      <div>
+        <p class="section-kicker">STORE OPERATIONS</p>
+        <h2>Product inventory</h2>
+      </div>
+      <button type="button" class="btn secondary-btn" id="refresh-inventory">Refresh inventory</button>
+    </div>
+    <div class="admin-layout">
+      <form id="admin-product-form" class="admin-form glass-panel">
+        <h3 id="admin-form-title">Add product</h3>
+        <label for="admin-name">Product name</label>
+        <input id="admin-name" name="name" required maxlength="120">
+        <label for="admin-price">Price</label>
+        <input id="admin-price" name="price" type="number" min="0" step="0.01" required>
+        <label for="admin-category">Category</label>
+        <input id="admin-category" name="category" required maxlength="80">
+        <label for="admin-stock">Stock</label>
+        <input id="admin-stock" name="stock" type="number" min="0" step="1" required>
+        <label for="admin-description">Description</label>
+        <textarea id="admin-description" name="description" rows="4" required maxlength="1000"></textarea>
+        <button class="btn primary-btn" id="admin-save-button" type="submit">Create product</button>
+        <button class="btn secondary-btn" id="admin-cancel-edit" type="button" hidden>Cancel edit</button>
+      </form>
+      <div class="inventory-panel">
+        <div id="inventory-list" class="inventory-list" aria-live="polite"></div>
+        <nav class="pagination-controls" id="inventory-pagination" aria-label="Inventory pages" hidden>
+          <button type="button" class="pagination-button" id="inventory-previous">Previous</button>
+          <span id="inventory-page">Page 1 of 1</span>
+          <button type="button" class="pagination-button" id="inventory-next">Next</button>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  <!-- Auth Modal -->
+  <div class="modal-overlay" id="auth-modal">
+    <div class="modal glass-panel">
+      <button type="button" class="close-btn" id="auth-close" aria-label="Close login dialog">&times;</button>
+      <h2 id="auth-title">Welcome Back</h2>
+      <div class="auth-form">
+        <input type="text" id="auth-name" placeholder="Name" class="hidden-input">
+        <input type="email" id="auth-email" placeholder="Email Address" required>
+        <input type="password" id="auth-password" placeholder="Password" required>
+        <button class="btn primary-btn" type="button" id="auth-btn">Login</button>
+        <p class="toggle-text">Don't have an account?
+          <button type="button" class="text-button highlight-text" id="auth-mode-toggle">Register</button>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
